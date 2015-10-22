@@ -1,0 +1,113 @@
+Ex1:
+
+Calculer la différence entre deux diagonales d'une matrice.
+
+Par exemple:
+
+  1234
+  2345
+  3456
+  4569
+
+Doit renvoyer: (1 + 3 + 5 + 9) - (4 + 4 + 4 + 4) = 18 - 16 = 2
+
+public class Square {
+	public static int diff(int[][] matrix) {
+		// TODO
+	}
+}
+
+========
+
+Ex2:
+
+Ecrire une fonction Java permettant de générer un "escalier".
+Le caractère # servira à afficher une marche.
+
+public class Staires {
+
+	public static String generate(int steps) {
+		// TODO
+	}
+}
+
+Exemple:
+
+Staires.display(1);
+
+  #
+
+Staires.display(6);
+
+        #
+       ##
+      ###
+     ####
+    #####
+   ######
+
+========
+
+Ex3:
+
+Ecrire une fonction permettant de convertir une heure au format US au format FR.
+
+public class Times {
+
+	public static String toFrenchTime(String usTime) {
+		// TODO
+	}
+}
+
+Exemple:
+
+    7:19PM => 19h19
+    5:5AM  => 05h05
+
+========
+
+Ex4:
+
+Implémenter une recherche dichotomique.
+Une recherche dichotomique permet de recherche de manière efficace une valeur
+dans un tableau préalablement trié.
+
+Par exemple:
+[1, 5, 7, 9, 10, 15]
+
+L'algorithme pour rechercher l'index de la valeur 5 procède comme ceci:
+  - Comparaison avec la valeur au milieu du tableau: 5 < 9, donc la
+    recherche doit s'effectuer dans la première moitié (partie gauche) du tableau.
+  - Comparaison avec la valeur au milieu de la première moitié du tableau: 5 == 5
+    Ok, sinon, on aurait continué avec la partie droite / gauche en continuant jusqu'à trouver la valeur.
+  - Si la valeur n'est pas trouvée, la valeur -1 est renvoyé.
+
+public class BinarySearch {
+
+	public static int search(int[] tableau) {
+		// TODO
+	}
+}
+
+========
+
+Ex5:
+
+Implémenter le code de Jules César.
+Afin d'envoyer des messages cryptés, Jules César a inventé l'algorithme suivant:
+
+ - Supposons une chaîne en entrée: ABCD
+ - La clé de cryptage n est un entier entre 1 et 25.
+ - Avec la clé de cryptage, le message codé consiste à remplacer chaque lettre par
+   la nième lettre suivante dans l'alphabet.
+ - En cas de dépassement de l'alphabet, l'algorithme revient au départ (par exemple la lettre suivant Z est A).
+ - Avec n = 2, la chaîne ABCD devient donc CDEF.
+
+public class JulesCesareCipher {
+
+	public static String encode(String text, int n) {
+		// TODO
+	}
+}
+
+
