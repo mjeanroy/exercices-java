@@ -1,0 +1,41 @@
+Pour les deux exercices suivants, l'objectif est d'utiliser l'api Collection
+et d'utiliser les structures de données les plus pertinentes pour résoudre un problème.
+
+Ex1:
+
+Renvoyer l'intersection de deux listes (c'est à dire les éléments présents dans
+les deux listes uniquement).
+
+Astuce : utiliser une implémentation de l'API Collection.
+
+public class Intersection {
+
+	public static Collection<String> intersection(List<String> list1, List<String> list2) {
+		// TODO
+	}
+}
+
+===========
+
+Ex2:
+
+Afficher le nombre d'occurences de chaque lettres dans un mot.
+Par exemple, la chaîne "ababcd" doit afficher :
+
+  a -> 2
+  b -> 2
+  c -> 1
+  d -> 1
+
+A noter que l'ordre d'affichage n'a pas d'importance.
+
+Astuce :
+- Utiliser une implémentation de l'API Collection.
+- Utiliser System.out.println pour afficher dans la console.
+
+public class CountOccurences {
+
+	public static void count(String text) {
+		// TODO
+	}
+}
