@@ -1,0 +1,101 @@
+Pour les deux exercices suivants, l'objectif est d'implémenter des structures de données simple
+et de les utiliser pour résoudre des problèmes.
+Nous allons utiliser les mécanismes de généricités afin de rendre nos
+classes utilisables avec n'importe quel type tout en gardant un typage fort.
+L'autre objectif sera d'utiliser tous les mécanismes vus jusque là pour masquer au maximum
+l'implémentation (visibilité des champs / classes, classes internes, etc.).
+
+Ex1:
+
+Ecrire une classe Stack implémentant une structure de type LIFO (Last In First Out).
+Cette classe contiendra les méthodes suivantes:
+
+ - push : permet d'ajouter une entrée dans la Stack.
+ - pop : permet de supprimer le dernier élément ajouté dans la Stack et le renvoie.
+ - peek : permet de récupérer le dernier élément ajouté dans la Stack sans le supprimer.
+ - size : permet de récupérer la taille de la Stack.
+ - isEmpty : permet de vérifier si la Stack est vide.
+
+Voici la signature de ces méthodes:
+
+  void push(T entry);
+
+  T pop();
+
+  T peek();
+
+  int size();
+
+  boolean isEmpty();
+
+===================
+
+Ex2:
+
+Ecrire une classe Queue implémentant une structure de type FIFO (First In First Out).
+Cette classe contiendra les méthodes suivantes:
+
+ - enqueue : permet d'ajouter une entrée dans la Queue.
+ - dequeue : permet de supprimer le premier élément ajouté dans la Queue et le renvoie.
+ - peek : permet de récupérer le premier élément ajouté dans la Queue sans le supprimer.
+ - size : permet de récupérer la taille de la Queue.
+ - isEmpty : permet de vérifier si la Queue est vide.
+
+Voici la signature de ces méthodes:
+
+  void enqueue(T entry);
+
+  T dequeue();
+
+  T peek();
+
+  int size();
+
+  boolean isEmpty();
+
+===================
+
+Ex3:
+
+Nous souhaitons vérifier la validité d'une chaîne de caractères.
+Les contraintes sont les suivantes:
+  - Toute parenthèse ouvrante doit être fermée.
+  - Toute parenthèse fermant doit être précédée d'une parenthèse ouvrante.
+  - Pour simplifier, la chaîne de caractère en entrée contiendra uniquement:
+    - Le caractère '(' symbolisant une parenthèse ouvrante.
+    - Le caractère ')' symbolisant une parenthèse fermante.
+    - Le caractère espace ' '.
+
+Pour résoudre ce problème, nous utiliserons une des deux structures de données créées précédemment.
+
+Exemple:
+
+  ()() : est une chaîne valide.
+  (())( : n'est pas une chaîne valide.
+
+
+public class Parenthesis {
+
+	public static boolean check(String text) {
+		// TODO
+	}
+}
+
+===================
+
+Ex4:
+
+Nous souhaitons inverser tous les mots d'une chaîne de caractère.
+Pour simplifier, seul le caractère d'espacement sera utilisé comme séparateur de mot.
+Pour résoudre ce problème, nous utiliserons une des deux structures de données créées précédemment.
+
+Exemple:
+
+  I am student. => student. am I
+
+public class Reverse {
+
+        public static String apply(String text) {
+                // TODO
+        }
+}
