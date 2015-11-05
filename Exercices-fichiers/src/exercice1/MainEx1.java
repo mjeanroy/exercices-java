@@ -1,3 +1,5 @@
+package exercice1;
+
 
 public class MainEx1 {
 

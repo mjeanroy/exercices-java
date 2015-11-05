@@ -1,3 +1,5 @@
+package exercice1;
+
 import java.io.File;
 
 public class FileTools {
