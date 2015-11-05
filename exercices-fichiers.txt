@@ -1,0 +1,171 @@
+L'objectif de ces exercices est de mettre en oeuvre l'utilisation de fichiers (en lecture / écriture) tout en utilisant
+les structures de données et collections les plus adaptées au problème.
+
+L'accent devra être mis :
+  - Sur la simplicité de l'implémentation.
+  - Les performances (utilisation des collections les plus adaptées, etc.).
+  - La qualité (découpage efficace en fonctions, classes, etc.).
+  - Le respect de l'encapsulation (rien n'est plus visible que nécessaire, classes internes, etc.).
+  - Penser à gérer les cas d'erreur avec les bonnes exceptions.
+
+=============
+
+Ex1: Manipulation de fichier
+
+- Ecrire une méthode printFiles affichant les fichiers et répertoires d'un répertoire en utilisant la classe java.io.File.
+- Ecrire une méthode totalSizeOfFiles calculant le nombre d'octets de l'ensemble des fichiers (pas les répertoires) d'un répertoire.
+- Ecrire une méthode mostRecentFile indiquant quel est le fichier ou répertoire le plus récemment utilisé ou null si le repertoire ne contient pas de fichier ou répertoire.
+- On souhaite modifier la méthode printFiles pour qu'elle n'affiche que les fichiers et répertoires dont le nom commence par une chaine de caractères passée en paramètre.
+  Pour filtrer la liste des fichiers concernés on utilisera la méthode java.io.File.listFile(java.io.FilenameFilter) .
+  Créer et utiliser une classe StartsWithFilter implémentant l'interface java.io.FilenameFilter effectuant le filtrage.
+  Vous pouvez au choix :
+    - Créer une classe "standard",
+    - Utiliser une classe anonyme,
+    - Utiliser une lambda.
+
+=============
+
+Ex2 :
+
+Après quelques jours d'utilisation de votre nouvelle application en production chez votre client,
+celui-ci vous indique que des lenteurs sont constatées. D'abord sceptiques (comment votre application pourrait ne pas
+être performante ?!), vous constatez ce fait par vous même.
+En tant que développeur astucieux, vous déployez une nouvelle version de votre application permettant d'ajouter
+dans les fichiers de logs journaliers de votre applications les temps d'exécutions de chaque mêthode susceptible de poser problème.
+Après quelques jours, vous récupérez ces fichiers de logs pour les analyser :
+- Chaque ligne du fichier de log est formattée de la façon suivante :
+
+  DEBUG [class_package][class_name]:[method_name] --> [duree]ms
+
+Par exemple:
+
+  DEBUG com.zenika.myapp.services.UserService.findUser --> 10ms
+
+Ecrivez une fonction permettant de :
+- Lire ce fichier en entrée (le chemin de ce fichier pourra par exemple être donnée en argument de la fonction main).
+- Ecrire dans un fichier csv les temps d'exécution moyen de chaque méthode. Ce fichier CSV aura les colonnes suivantes : package / classe / méthode / temps exécution
+
+public class LogParser {
+    public static void parseAndCreateCsv(String filePath, String csvPath) {
+        // TODO
+    }
+}
+
+Pour rappel, un fichier CSV est simplement un fichier texte dont chaque colonne (sur chaque ligne) est séparée par le caractère ";".
+Par exemple :
+  com.zenika.myapp.services;UserService;findUser;10
+
+En ouvrant dans un fichier excel le fichier, pouvez-vous me donner les 3 méthodes les moins performantes ?
+
+=============
+
+Ex3 :
+
+Votre client vous demande de développer une nouvelle application dont les paramètres techniques sont fournis dans un fichier de configuration yaml.
+Pour rappel, un fichier yaml est un fichier sémantiquement proche du format XML mais où chaque section est indentée de 4 espaces.
+ Le fichier de configuration qui vous sera fournie aura le format
+
+
+database
+    host: localhost
+    user: root
+    password: azerty
+log
+    file: /var/log/app.log
+    level: debug
+security
+    cipher: qwerty
+    algo: aes
+
+
+Le but : écrire une fonction permettant de lire le fichier de configuration et de créer les instances d'objet correspondants.
+
+- Etape1 : Créer les classes DatabaseConfiguration, LogConfiguration et SecurityConfiguration.
+  Ces classes auront autant d'attribut que précisé dans le fichier de configuration :
+
+    DatabaseConfiguration
+      - String host
+      - String user
+      - String password
+
+    LogConfiguration
+      - String file
+      - String level
+
+    SecurityConfiguration
+      - String cipher
+      - String algo
+
+- Etape 2 : lire le fichier de configuration et renvoyer la configuration correspondante.
+
+public class ConfigurationParser {
+
+    public static Configuration parse(String file) {
+        // TODO
+    }
+
+    public static class Configuration {
+        public DatabaseConfiguration database;
+        public LogConfiguration log;
+        public SecurityConfiguration security;
+    }
+}
+
+Etape 3 : si ce n'est pas déjà fait, pouvez faire en sorte que l'ordre des sections soit aléatoire ?
+
+=============
+
+Ex4:
+
+Afin de satisfaire notre client, nous avons développé, dans notre application en client lourd, une fonctionnalité permettant d'enregistrer sur disque un fichier
+contenant l'état de son stock de produit édité par les utilisateurs de l'application.
+L'objectif de cette fonctionnalité est de permettre aux utilisateurs de stocker leur travail en cas de perte de connexion réseau.
+
+La classe Product possède les champs suivants:
+
+    String productNumber;
+    String name;
+    long stockCount;
+    BigDecimal price;
+
+
+Notre sauvegarde sur fichier sera très simple :
+- Chaque produit est enregistré sur une nouvelle ligne.
+- Chaque champ est écrit dans cet ordre : productNumber - name - stockCount - price.
+- Chaque valeur de champ sera séparé par le caractère #
+
+
+Q1: Ecrire la fonction save prenant une liste de produits en paramètres permettant de sauvegarder le fichier sur disque :
+
+public class ProductDao {
+
+    public static void save(List<Product> products, String filePath) {
+        // TODO
+    }
+}
+
+Q2: Ecrire la fonction restore permettant de restaurer les instances Java à partir du fichier:
+
+public class ProductDao {
+
+    public static List<Product> restore(String filePath) {
+        // TODO
+    }
+}
+
+
+Après quelques conseils d'un développeur expérimenté, celui-ci vous conseille d'utiliser pour cette fonctionnalité l'interface Serializable.
+Implémenter la fonction save et restore en utilisant l'interface Serializable (dans une nouvelle classe) :
+
+public class ProductSerializableDao {
+
+    public static void save(List<Product> products, String filePath) {
+        // TODO
+    }
+
+    public static List<Product> restore(String filePath) {
+        // TODO
+    }
+}
+
+Rappel : il est possible de lire / écrire dans un fichier une instance d'objet sérializable en utilisant les classes ObjectInputStream et ObjectOutputStream.
