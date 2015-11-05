@@ -35,7 +35,7 @@ dans les fichiers de logs journaliers de votre applications les temps d'exécuti
 Après quelques jours, vous récupérez ces fichiers de logs pour les analyser :
 - Chaque ligne du fichier de log est formattée de la façon suivante :
 
-  DEBUG [class_package][class_name]:[method_name] --> [duree]ms
+  DEBUG [class_package][class_name].[method_name] --> [duree]ms
 
 Par exemple:
 
