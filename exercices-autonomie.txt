@@ -1,0 +1,98 @@
+Ex1: Jeu de carte
+
+On souhaite modéliser un jeux de 32 cartes (8 * 4 couleurs).
+Les 8 rangs sont SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE et les quatres suites CLUBS, DIAMONDS, HEARTS, SPADES.
+
+- Ecrire une classe Card prenant en paramètre un rang et une suite (utiliser les énumérations pour modéliser les rangs et les suites).
+- Ecrire la méthode toString() affichant la carte new Card(Rank.ACE,Suit.SPADES) comme ceci ACE of SPADES. 
+
+Note: les valeurs d'une énumération possèdent une méthode name() mais il est aussi possible de redéfinir la méthode toString sur un type enum.
+
+- Créer une méthode List<Card> newDeck() qui renvoie un jeu de 32 cartes. 
+
+Note : La classe d'une énumération possède une méthode statique values() qui renvoie un tableau contenant les valeurs de l'énumération.
+
+- En supposant que l'ordre de trie des cartes est d'abord en fonction de leur suite puis de leur rang.
+  Que doit-on faire pour que le code suivant trie les cartes ?
+
+    List<Card> deck = newDeck();
+    Collections.sort(deck);
+    System.out.println(deck);
+
+Note : un type enum peut implémenter l'interface Comparable.
+   
+
+Ex2: Multimap
+
+Le but de cet exercice est d'implémenter une MultiMap.
+Une Multimap est une sorte de Map mais cette structure de données accepte plusieurs valeurs pour une même clé pourvu que les valeurs
+soient différentes. En fait, on peut voir une MultiMap comme une Map dont les valeurs sont des Set. 
+Une MultiMap ne devra jamais stocker null que cela soit en tant que clé ou en tant que valeur.
+
+L'interface de MultiMap est la suivante
+
+import java.util.Set;
+
+public interface MultiMap<K, V> {
+  int size();
+  Set<V> get(Object key);
+  boolean put(K key, V value);
+ }
+
+Implémenter une classe HashSetMultiMap :
+  - La méthode size renvoie le nombre total de couples insérés dans la MultiMap.
+    Notez que le nombre de clés de la MultiMap sera toujours inférieur ou égal à size.
+  - La méthode get prend en paramètre une clé et renvoie un ensemble contenant l'ensemble des valeurs
+    qui ont pour clé la clé recherchée.
+    Si la clé demandée ne possède aucune valeur, la méthode get devra renvoyer un ensemble vide.
+  - La méthode put ajoute un couple clé/valeur à la MultiMap, si le couple clé/valeur existe déjà la méthode renvoie false
+    sinon la méthode ajoute la valeur dans l'ensemble des valeurs associées à la clé et renvoie vrai.
+
+Cette classe ne devra en aucun cas être visible par un utilisateur externe.
+Pour cela, HashSetMultiMap devra être implémentée en tant que classe interne de la classe MultiMaps
+qui elle contiendra un ensemble de méthodes statiques permettant de créer des MultiMap.
+
+Ecrire une méthode statique createMultiMap dans la classe MultiMaps qui ne prend rien en paramètre et renvoie une MultiMap
+dont l'ordre des clés est indéfini.
+
+On souhaite maintenant pouvoir choisir lors de la création de la MultiMap si l'ensemble des clés de celle-ci
+est non triée (UNSORTED), triée par clé (SORT_BY_KEY) ou triée par ordre d'insertion (SORT_BY_INSERTION_ORDER). 
+
+  - Ecrire un enum nommé Kind interne à l'interface MultiMap qui définit les 3 constantes (ci-dessus) spécifiant l'ordre des clés de la MultiMap.
+  - Ecrire une méthode statique createMultiMap2 dans la classe MultiMaps qui prend en paramètre un ordre pour les clés de la MultiMap (de type Kind) et renvoie une MultiMap qui stockera ses clés dans l'ordre spécifié. 
+  - Ajouter une méthode iterator à l'interface de MultiMap qui renvoie un Iterateur sur toutes les valeurs (à plat) stockées dans la MultiMap.
+    L'iterateur devra permettre de retirer des valeurs de la MultiMap.
+  - Modifier l'interface MultiMap pour qu'il soit possible de faire un foreach sur une MultiMap.
+
+Rappel & Astuces :
+
+  - Ecrire un itérateur revient à écrire implémentant l'interface Iterator.
+    Par exemple :
+
+public class MyCollection<T> {
+
+  public Iterator<T> iterator() {
+    return new MyIterator();
+  }
+
+  private class MyIterator implements Iterator<T> {
+
+    @Override
+    public boolean hasNext() {
+      // TODO
+    }
+
+    @Override
+    public T next() {
+      // TODO
+    }
+
+    @Override
+    public void remove() {
+      // TODO
+    }
+  }
+}
+
+
+Ex1: Multimap
