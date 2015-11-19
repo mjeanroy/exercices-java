@@ -1,0 +1,53 @@
+Ex1:
+
+Nous souhaiterions renvoyer le format JSON correspondant à un objet donné en paramètre.
+Ecrire une fonction toJson prenant un objet en paramètre et renvoyant sa représentation Json :
+
+public class JsonUtils {
+    public static String toJson(Object o) {
+        // TODO
+    }
+}
+
+Afin de pouvoir utiliser notre fonction avec n'importe quel type, nous utiliserons pour cela la réflexion
+pour récupérer les champs et getters à renvoyer.
+Gérer le cas où certains champs et getters sont communs (par exemple, on ne doit pas sérialiser deux fois le champ id et le champ renvoyé par la méthode getId).
+
+Par exemple, supposons la classe suivante :
+
+public class Product {
+    private int id;
+    private String name;
+    private float unitPrice;
+    private int count;
+
+    public Product(int id, String name, float price, int count) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.count = count;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public float getPrice() {
+        return price * count;
+    }
+}
+
+La fonction peut être utilisée comme ça :
+
+public class Test {
+    public static void main(String[] args) {
+        Product p = new Product(1, "foo", 2.0, 2);
+        System.out.println(JsonUtils.toJson(p));
+        // {"id": 1, "name": "foo", "unitPrice": 2.0, "count": 2, price: "4.0"}
+    }
+}
+
