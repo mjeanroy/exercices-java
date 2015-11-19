@@ -1,0 +1,32 @@
+TP1: Implémentation de fonctions & d'algorithmes simples en Java
+  -> Diagonale d'une matrice
+  -> Affichage d'un escalier
+  -> Conversion Heure US vers FR
+  -> Recherche dichotomique
+  -> Code de Jules César
+
+TP2: Héritage, Pattern Template et visibilité
+  -> Simulation de combats entre robots / humain
+
+TP3: Collections et structures de données
+  -> Intersection de deux listes
+  -> Occurences de lettres dans une chaîne de caractères
+
+TP4: Collection, Exceptions & Pattern Composition vs Héritage
+  -> Composition VS Héritage
+  -> Tests des Collections & utilisation des streams Java 8
+  -> Simulation de virement entre comptes bancaires
+
+TP5: Manipulation du système de fichiers
+  -> Analyse de répertoires (liste des fichiers, poids des fichiers, etc.).
+  -> Parsing d'un fichier de logs, aggrégation et exports CSV
+  -> Parsing d'un fichier YAML
+  -> Sérialisation (texte & objets sérialisables).
+
+TP6: Modélisation et implémentation de structures de données
+  -> Modélisation d'un jeu 32 cartes
+  -> Implémentation d'une structure de données MultiMap
+
+TP7: Réflexion & Annotations
+  -> Sérialisation JSON en utilisant la réflexion
+  -> Utilisation d'annotations pour customiser la sérialisation
