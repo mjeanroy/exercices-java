@@ -30,3 +30,9 @@ TP6: Modélisation et implémentation de structures de données
 TP7: Réflexion & Annotations
   -> Sérialisation JSON en utilisant la réflexion
   -> Utilisation d'annotations pour customiser la sérialisation
+
+TP8: Tests Unitaires
+  -> Tests unitaires avec JUnit
+  -> Amélioration des tests avec AssertJ
+  -> Doublures avec Mockito
+
