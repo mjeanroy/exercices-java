@@ -1,0 +1,118 @@
+Ex1:
+
+On aimerait pouvoir customiser la sérialisation Json d'un objet selon trois stratégies :
+- Sérialisation des getters uniquement.
+- Sérialisation des attributs uniquement.
+- Sérialisation des getters et des attributs (le mode par défaut).
+
+Pour cela, nous allons mettre en place une annotation @JsonStrategy sur la classe à sérialiser, par exemple :
+
+@JsonStrategy(JsonVisibility.GETTER)
+// @JsonStrategy(JsonVisibility.FIELDS)
+// @JsonStrategy(JsonVisibility.GETTER_FIELDS)
+public class Product {
+   // ....
+}
+
+- Ecrire l'annotation JsonStrategy.
+- Ecrire un enum JsonVisibility contenant trois valeurs : GETTER, FIELDS, GETTER_FIELDS.
+- Adapter la méthode JsonUtils.toJson et vérifier la présence de l'annotation :
+  - Si l'annotation n'est pas présente ou sa valeur est GETTER_FIELDS, alors les getters et les attributs sont pris en compte.
+  - Si l'annotation est présente avec la valeur GETTER, seuls les getters publiques sont pris en compte.
+  - Si l'annotation est présente avec la valeur FIELDS, alors seuls les attributs sont pris en compte. 
+
+Astuce : sur une instance de type Class, vous pouvez :
+  - Vérifier si une annotation est présente avec la méthode "isAnnotationPresent".
+  - Récupérer une annotation avec la méthode "getAnnotation".
+
+Ex2:
+
+Afin de pouvoir customiser la sérialisation Json réalisée, nous allons utiliser une annotation @JsonProperty.
+Lorsque cette annotation est utilisée, si le paramètre "value" est renseignée, celui-ci nous donnera le nom de l'attribut
+dans la représentation Json finale.
+
+Astuce : sur une instance de type Method, vous pouvez :
+  - Vérifier si une annotation est présente avec la méthode "isAnnotationPresent"
+  - Récupérer une annotation avec la méthode "getAnnotation"
+
+Par exemple, toujours avec la classe Product :
+
+public class Product {
+    private int id;
+    private String name;
+    private float unitPrice;
+    private int count;
+
+    public Product(int id, String name, float price, int count) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @JsonProperty("nom")
+    public String getName() {
+        return name;
+    }
+
+    @JsonProperty("prix")
+    public float getPrice() {
+        return price * total;
+    }
+}
+
+La fonction doit maintenant renvoyer :
+
+public class Test {
+    public static void main(String[] args) {
+        Product p = new Product(1, "foo", 2.0, 2);
+        System.out.println(JsonUtils.toJson(p));
+        // {"id": 1, "nom": "foo", "unitPrice": 2.0, "count": 2, "prix": 4.0}
+    }
+}
+
+Ex3:
+
+Afin d'ignorer certains champs lors de la sérialisation Json, créer et implémenter l'utilisation d'une annotation @JsonIgnore.
+Cette annotation permettra d'ignorer les champs et méthodes annotés avec @JsonIgnore lors de la sérialisation.
+Par exemple :
+
+public class Product {
+    private int id;
+    private String name;
+    private float unitPrice;
+    private int count;
+
+    public Product(int id, String name, float price, int count) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @JsonIgnore
+    public float getPrice() {
+        return price * total;
+    }
+}
+
+La fonction doit maintenant renvoyer :
+
+public class Test {
+    public static void main(String[] args) {
+        Product p = new Product(1, "foo", 2.0, 2);
+        System.out.println(JsonUtils.toJson(p));
+        // {"id": 1, "nom": "foo", "unitPrice": 2.0, "count": 2}
+    }
+}
+
