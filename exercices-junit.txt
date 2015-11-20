@@ -1,0 +1,85 @@
+Ex1:
+
+Ecrire les tests unitaires pour les méthodes du TP 1:
+
+- Ecrire les tests validant le bon fonctionnement de la méthode Square.diff
+- Ecrire les tests validant le bon fonctionnement de la méthode Staires.generate
+- Ecrire les tests validant le bon fonctionnement de la méthode Times.toFrenchTime
+- Ecrire les tests validant le bon fonctionnement de la méthode BinarySearch.search
+- Ecrire les tests validant le bon fonctionnement de la méthode JulesCesareCipher.encode
+
+Attention, l'accent devra être mis sur :
+- Les tests des cas au limite.
+- La qualité du code de tests, devant respecter les mêmes contraintes que du code applicatif (pas de duplication, etc.).
+
+Ex2:
+
+Testez les classes et fonctions réalisées lors du TP structures de données :
+- Tester la méthode Intersection.intersection
+- Tester la méthode CountOccurences.count
+
+Afin de tester l'affichage produit dans la méthode CountOccurences.count (produit avec System.out.println), nous allons définir une Rule Junit permettant
+d'intercepter l'affichage sur la sortie standard :
+
+- Ecrire une Rule SystemOutRule :
+  - Pour simplifier, cette Rule peut étendre ExternalResource.
+  - Si la Rule étend la classe ExternalResource, vous pouvez surcharger les méthode before et after afin
+    d'ajouter du comportement avant et après chaque test.
+- Déclarer cette Rule dans la classe de tests.
+- Utiliser cette Rule pour vérifier vos assertions.
+
+Exemple d'interception des appels à System.out.println :
+
+public class InterceptSysout {
+    public static void main(String[] args) {
+        // Store original sysout
+        PrintStream out = System.out;
+
+        // Override standard sysout
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        PrintStream customOut = new PrintStream(bos);
+        System.setOut(customOut);
+
+        // Log something
+        System.out.println("Hello World");
+
+        // Flush message and get it
+        bos.flush();
+        String message = bos.toString();
+
+        // Restore original sysout
+        System.setOut(out);
+    }
+}
+
+Attention :
+- Bien penser à tester les cas aux limites.
+- Ecrire un test par cas d'utilisation.
+
+Ex3:
+
+Ecrire les tests unitaires permettant de valider le bon fonctionnement des classes
+de simulation de combat de robots.
+
+Exemples de tests :
+
+- Tester que les méthodes toString de chaque classe renvoient la chaîne de caractère attendue.
+- Tester le tir d'un robot sur un autre robot.
+- Tester le combat d'un robot et un deuxième robot (méthode de la classe Arena).
+- Tester le fait qu'il est impossible de tirer sur un robot mort.
+- Tester le tir d'un humain sur un autre combattant.
+  - Que pouvez-vous dire sur le test ?
+  - Essayer de faire en sorte de régler le problème : vous pouvez étendre la classe Random pour maitriser les valeurs de retour
+    et (par exemple) utiliser la reflexion pour ne pas impacter le code actuel.
+
+Ex4:
+
+Ecrire les tests unitaires de vérifier que les fonctions de manipulation de fichiers (écrites
+à un TP précédent) fonctionnent correctement.
+
+- Tester la méthode printFiles.
+- Tester la méthode totalSizeOfFiles.
+- Tester la méthode mostRecentFile.
+
+
+
