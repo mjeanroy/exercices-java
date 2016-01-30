@@ -1,0 +1,12 @@
+Package;Classe;Methode;Temps moyen
+com.zenika.myawesomeapp;StatisticsDao;compute;5064
+com.zenika.myawesomeapp;AuthenticationController;authenticate;5091
+com.zenika.myawesomeapp;InvoiceController;handleNewInvoice;5015
+com.zenika.myawesomeapp;StorageService;upload;5023
+com.zenika.myawesomeapp;UserDao;searchByName;5000
+com.zenika.myawesomeapp;ClientService;findClientByIdentifier;5036
+com.zenika.myawesomeapp;UserService;findUser;4933
+com.zenika.myawesomeapp;AccountService;find;4917
+com.zenika.myawesomeapp;CommandDao;save;4842
+com.zenika.myawesomeapp;CommandService;generate;5062
+
